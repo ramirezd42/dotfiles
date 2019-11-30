@@ -1,0 +1,8 @@
+{
+  "languageserver": {
+    "ruby": {
+      "command": "solargraph",
+      "filetypes": ["ruby"]
+    }
+  }
+}
