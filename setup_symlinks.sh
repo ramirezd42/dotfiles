@@ -1,15 +1,14 @@
 #bin/sh
 
 link_file () {
-  echo "$PWD/$1 -> $HOME/$2"
   if [ ! -f $HOME/$2 ] && [ ! -d $HOME/$2 ]; then
     ln -sv $PWD/$1 $HOME/$2
   else
-    echo linked file/directory $HOME/$1 found. skipping...
+    echo existing link found for file/directory $HOME/$1...
   fi
-  echo '\n'
 }
 
+echo "Setting up symlinks..."
 link_file '.zsh_aliases' '.zsh_aliases'
 link_file '.tmux-conf' '.vimrc'
 link_file '.vimrc' '.vimrc'

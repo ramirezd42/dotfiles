@@ -15,8 +15,8 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-surround')
 
 map <Leader>t :NERDTreeToggle<CR>
-map <Leader>f :CtrlSF 
-map <Leader>p :CtrlP
+map <Leader>f :CtrlSF  
+map <Leader>p :CtrlP<CR>
 
 let g:lightline = {
       \ 'colorscheme': 'dracula',

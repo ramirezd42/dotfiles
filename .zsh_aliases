@@ -1,1 +1,3 @@
-/Users/dave/git/dotfiles/.zsh_aliases -
+alias uhh="history | grep"
+alias vim=nvim
+

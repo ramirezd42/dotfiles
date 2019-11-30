@@ -119,6 +119,9 @@ unset __conda_setup
 
 # load aliases
 source ~/.zsh_aliases
+if [ -f "/Users/dave/.zsh_aliases_local" ]; then
+  source /Users/dave/.zsh_aliases_local
+fi
 
 # Setup rbenv
 eval "$(rbenv init -)"
