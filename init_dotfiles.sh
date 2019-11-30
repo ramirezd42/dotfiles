@@ -28,7 +28,7 @@ add_package () {
   brew install $1
 
   if ! brew ls --versions $1 > /dev/null; then
-    echo "❌ Error: package not installed"	
+    echo "❌ Error: package $1 not installed"	
     exit 1
   fi
 }
@@ -43,10 +43,9 @@ add_package 'the_silver_searcher'
 
 echo "\n"
 
-
 # Install oh-my-zsh
-if [ -f "$ZSH/oh-my-zsh.sh" ]; then
-  echo "✅ Found oh-my-zsh."
+if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+  echo "✅ Found oh-my-zsh.\n"
 else
   echo "\noh-my-zsh not found. Installing..."
   chsh -s /bin/sh || \
@@ -57,4 +56,4 @@ fi
 # Setup symlinks for the dotfiles
 ./setup_symlinks.sh || exit 1
 
-echo "👍 Have fun. Be safe!"
+echo "\n 👍 Have fun. Be safe!"
