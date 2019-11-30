@@ -34,6 +34,7 @@ add_package () {
 }
 
 echo "\nInstalling homebrew packages..."
+add_package 'zsh'
 add_package 'tig'
 add_package 'jq'
 add_package 'neovim'
@@ -42,6 +43,18 @@ add_package 'the_silver_searcher'
 
 echo "\n"
 
+
+# Install oh-my-zsh
+if [ -f "$ZSH/oh-my-zsh.sh" ]; then
+  echo "✅ Found oh-my-zsh."
+else
+  echo "\noh-my-zsh not found. Installing..."
+  chsh -s /bin/sh || \
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
+    exit 1
+fi
+
+# Setup symlinks for the dotfiles
 ./setup_symlinks.sh || exit 1
 
 echo "👍 Have fun. Be safe!"
