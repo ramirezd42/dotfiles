@@ -2,6 +2,7 @@
 
 set number
 set relativenumber
+set list
 
 packadd minpac
 call minpac#init()
@@ -14,10 +15,7 @@ call minpac#add('dyng/ctrlsf.vim')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-surround')
 
-map <Leader>t :NERDTreeToggle<CR>
-map <Leader>f :CtrlSF  
-map <Leader>p :CtrlP<CR>
-
+let g:ctrlp_dotfiles = 1
 let g:lightline = {
       \ 'colorscheme': 'dracula',
       \ 'active': {
@@ -28,3 +26,10 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
+
+source $HOME/.config/vim/coc.vim
+
+map <Leader>t :NERDTreeToggle<CR>
+map <Leader>f :CtrlSF 
+map <Leader>F :CtrlSFToggle<CR>
+map <Leader>p :CtrlP<CR>
