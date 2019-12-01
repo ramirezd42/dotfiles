@@ -10,6 +10,7 @@ link_file () {
 
 echo "Setting up symlinks..."
 link_file '.zsh_aliases' '.zsh_aliases'
-link_file '.tmux-conf' '.vimrc'
+link_file '.tmux.conf' '.tmux.conf'
 link_file '.vimrc' '.vimrc'
+link_file '.zshrc' '.zshrc'
 link_file 'config' '.config'
