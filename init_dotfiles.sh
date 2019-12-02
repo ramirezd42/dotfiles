@@ -34,12 +34,12 @@ add_package () {
 }
 
 echo "\nInstalling homebrew packages..."
-add_package 'zsh'
 add_package 'tig'
 add_package 'jq'
 add_package 'neovim'
 add_package 'tmux'
 add_package 'the_silver_searcher'
+add_package 'reattach-to-user-namespace'
 
 echo "\n"
 
@@ -48,6 +48,7 @@ if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
   echo "✅ Found oh-my-zsh.\n"
 else
   echo "\noh-my-zsh not found. Installing..."
+  add_package 'zsh'
   chsh -s /bin/sh || \
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
     exit 1
