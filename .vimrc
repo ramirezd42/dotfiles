@@ -26,10 +26,16 @@ let g:lightline = {
       \   'gitbranch': 'fugitive#head'
       \ },
       \ }
+let g:ctrlsf_mapping = {
+      \ 'next': '<C-9>',
+      \ 'prev': '<C-0>',
+      \ }
 
 source $HOME/.config/vim/coc.vim
 
-map <Leader>t :NERDTreeToggle<CR>
+map <Leader>\ :NERDTreeToggle<CR>
+map <Leader>t :tabnew<CR>
+map <Leader>T :tab split<CR>
 map <Leader>f :CtrlSF 
 map <Leader>F :CtrlSFToggle<CR>
 map <Leader>p :CtrlP<CR>
