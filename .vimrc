@@ -83,5 +83,5 @@ map <Leader>g :CtrlP<CR>
 map <Leader>gs :tabnew<CR>:Gstatus<CR>
 
 map <Leader>, :tabnew ~/.vimrc<CR>
-map <Leader>vr :source ~/.vimrc<CR>
+map <Leader>< :source ~/.vimrc<CR>
 map <Leader>mu :call minpac#update()<CR>
