@@ -40,6 +40,9 @@ add_package 'neovim'
 add_package 'tmux'
 add_package 'the_silver_searcher'
 add_package 'reattach-to-user-namespace'
+add_package 'httpie'
+add_pacakge 'fzf'
+$(brew --prefix)/opt/fzf/install
 
 echo "\n"
 

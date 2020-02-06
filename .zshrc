@@ -19,3 +19,8 @@ fi
 
 # I dont want to run husky
 export HUSKY_SKIP_HOOKS=1
+
+# Use nvim for git
+git config --global core.editor "nvim"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

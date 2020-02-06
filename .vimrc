@@ -11,7 +11,6 @@ packadd minpac
 call minpac#init()
 call minpac#add('itchyny/lightline.vim')
 call minpac#add('neoclide/coc.nvim')
-call minpac#add('kien/ctrlp.vim')
 call minpac#add('scrooloose/nerdtree')
 call minpac#add('dyng/ctrlsf.vim')
 call minpac#add('tpope/vim-fugitive')
@@ -25,14 +24,18 @@ call minpac#add('HerringtonDarkholme/yats.vim')
 call minpac#add('peitalin/vim-jsx-typescript')
 call minpac#add('dracula/vim', {'name': 'dracula'})
 call minpac#add('airblade/vim-rooter')
+call minpac#add('junegunn/fzf.vim')
+
+" add fzf to rtp
+set rtp+=/usr/local/opt/fzf
 
 " various dracula workarounds
 " https://github.com/dracula/vim/issues/96
 " https://github.com/dracula/vim/issues/143
-packadd! dracula
-let g:dracula_colorterm = 0
+ packadd! dracula
+ let g:dracula_colorterm = 0
 
-colorscheme dracula
+ colorscheme dracula
 
 "I deleted these incase something broke
 "/Users/dramirez/.vim/pack/minpac/start/syntastic
@@ -79,7 +82,7 @@ map <Leader>tc :tab split<CR>
 map <Leader>\ :NERDTreeToggle<CR>
 map <Leader>f :CtrlSF 
 map <Leader>F :CtrlSFToggle<CR>
-map <Leader>p :CtrlP<CR>
+map <Leader>p :Files<CR>
 map <Leader>g :CtrlP<CR>
 map <Leader>gs :tabnew<CR>:Gstatus<CR>
 
