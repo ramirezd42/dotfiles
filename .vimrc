@@ -27,9 +27,14 @@ call minpac#add('airblade/vim-rooter')
 call minpac#add('junegunn/fzf.vim')
 call minpac#add('liuchengxu/vista.vim')
 call minpac#add('easymotion/vim-easymotion')
+call minpac#add('elixir-editors/vim-elixir')
+call minpac#add('mhinz/vim-mix-format')
 
 " add fzf to rtp
 set rtp+=/usr/local/opt/fzf
+
+" format elixir files on save
+let g:mix_format_on_save = 1
 
 " various dracula workarounds
 " https://github.com/dracula/vim/issues/96
