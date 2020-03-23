@@ -73,6 +73,8 @@ set statusline+=%*
 " COC stfuff
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd CursorHold * silent call CocAction('runCommand', 'prettier.formatFile')
+map <Leader>np :call CocAction('diagnosticNext')<CR>
+map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
 
 source $HOME/.config/vim/coc.vim
 
@@ -80,12 +82,25 @@ map <Leader>t :tabnew<CR>
 map <Leader>tx :tabclose<CR>
 map <Leader>tc :tab split<CR>
 map <Leader>\ :NERDTreeToggle<CR>
+map <Leader>nf :NERDTreeFind<CR>
 map <Leader>f :CtrlSF 
 map <Leader>F :CtrlSFToggle<CR>
-map <Leader>p :Files<CR>
+map <Leader>p :GFiles<CR>
+map <Leader>P :Files<CR>
 map <Leader>g :CtrlP<CR>
 map <Leader>gs :tabnew<CR>:Gstatus<CR>
 
 map <Leader>, :tabnew ~/.vimrc<CR>
 map <Leader>< :source ~/.vimrc<CR>
 map <Leader>mu :call minpac#update()<CR>
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
