@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "coc-solargraph": ">=1.1.3"
+    "coc-solargraph": ">=1.1.6"
   }
 }

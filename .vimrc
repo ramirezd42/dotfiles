@@ -25,6 +25,8 @@ call minpac#add('peitalin/vim-jsx-typescript')
 call minpac#add('dracula/vim', {'name': 'dracula'})
 call minpac#add('airblade/vim-rooter')
 call minpac#add('junegunn/fzf.vim')
+call minpac#add('liuchengxu/vista.vim')
+call minpac#add('easymotion/vim-easymotion')
 
 " add fzf to rtp
 set rtp+=/usr/local/opt/fzf

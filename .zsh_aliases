@@ -1,2 +1,4 @@
 alias uhh="history | grep"
 alias vim=nvim
+alias merged="git branch --merged master | grep -v \"\* master\""
+alias merged!="merged | xargs -n 1 git branch -d"
