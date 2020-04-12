@@ -6,6 +6,7 @@ set list
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set nowrap
 
 packadd minpac
 call minpac#init()
