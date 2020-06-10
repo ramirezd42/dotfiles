@@ -30,10 +30,14 @@ call minpac#add('liuchengxu/vista.vim')
 call minpac#add('easymotion/vim-easymotion')
 call minpac#add('elixir-editors/vim-elixir')
 call minpac#add('mhinz/vim-mix-format')
+call minpac#add('mengelbrecht/lightline-bufferline')
+call minpac#add('jeetsukumaran/vim-buffergator')
+call minpac#add('sbdchd/neoformat')
 
 " add fzf to rtp
 set rtp+=/usr/local/opt/fzf
 
+let g:buffergator_sort_regime = 'mru'
 " format elixir files on save
 let g:mix_format_on_save = 1
 
@@ -55,6 +59,8 @@ let g:mix_format_on_save = 1
 let g:ctrlp_dotfiles = 1
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
+let g:buffergator_viewport_split_policy = 'B'
+
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
@@ -73,34 +79,50 @@ let g:lightline = {
       \   'currentfunction': 'CocCurrentFunction'
       \ },
       \ }
-
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " COC stfuff
 autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd CursorHold * silent call CocAction('runCommand', 'prettier.formatFile')
+
+let g:neoformat_typescriptreact_prettier = {
+        \ 'exe': 'prettier',
+        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
+        \ 'stdin': 1
+        \ }
+let g:neoformat_enabled_typescriptreact = ['tsfmt', 'prettier']
+augroup fmt
+  autocmd!
+  " Craziness to get around weird behavior after undoing https://github.com/sbdchd/neoformat/issues/134
+  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+augroup END
+
 map <Leader>np :call CocAction('diagnosticNext')<CR>
 map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
 
 source $HOME/.config/vim/coc.vim
 
-map <Leader>t :tabnew<CR>
-map <Leader>tx :tabclose<CR>
-map <Leader>tc :tab split<CR>
+" map <Leader>t :tabnew<CR>
+" map <Leader>tx :tabclose<CR>
+" map <Leader>tc :tab split<CR>
 map <Leader>\ :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
+map <Leader>nr :NERDTreeRefreshRoot<CR>
 map <Leader>f :CtrlSF 
 map <Leader>F :CtrlSFToggle<CR>
-map <Leader>p :GFiles<CR>
 map <Leader>P :Files<CR>
-map <Leader>g :CtrlP<CR>
-map <Leader>gs :tabnew<CR>:Gstatus<CR>
+map <Leader>GP :GFiles<CR>
 
-map <Leader>, :tabnew ~/.vimrc<CR>
+map <Leader>` :vsplit term://zsh -i<CR>
+map <Leader>~ :vsplit term://zsh -i<CR>
+
+" map <Leader>gs :tabnew<CR>:Gstatus<CR>
+
+map <Leader>, :e ~/.vimrc<CR>
 map <Leader>< :source ~/.vimrc<CR>
 map <Leader>mu :call minpac#update()<CR>
+map <silent><expr> <Leader><Leader> coc#refresh()
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
