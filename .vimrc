@@ -7,6 +7,9 @@ set tabstop=2
 set shiftwidth=2
 set expandtab
 set nowrap
+set hlsearch
+set incsearch
+set inccommand=nosplit
 
 packadd minpac
 call minpac#init()
@@ -100,6 +103,8 @@ augroup END
 
 map <Leader>np :call CocAction('diagnosticNext')<CR>
 map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
+map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
+map <Leader>ol :CocList outline<CR>
 
 source $HOME/.config/vim/coc.vim
 
@@ -117,7 +122,7 @@ map <Leader>GP :GFiles<CR>
 map <Leader>` :vsplit term://zsh -i<CR>
 map <Leader>~ :vsplit term://zsh -i<CR>
 
-" map <Leader>gs :tabnew<CR>:Gstatus<CR>
+map <Leader>y "+y
 
 map <Leader>, :e ~/.vimrc<CR>
 map <Leader>< :source ~/.vimrc<CR>
