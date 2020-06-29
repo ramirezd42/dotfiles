@@ -136,6 +136,9 @@ map <Leader>, :e ~/.vimrc<CR>
 map <Leader>< :source ~/.vimrc<CR>
 map <Leader>mu :call minpac#update()<CR>
 map <silent><expr> <Leader><Leader> coc#refresh()
+map <Leader>bp :bprev<CR>
+map <Leader>bn :bnext<CR>
+map <Leader>nh :noh<CR>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
