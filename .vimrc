@@ -37,9 +37,13 @@ call minpac#add('mengelbrecht/lightline-bufferline')
 call minpac#add('jeetsukumaran/vim-buffergator')
 call minpac#add('sbdchd/neoformat')
 call minpac#add('tiagofumo/vim-nerdtree-syntax-highlight')
+call minpac#add('tyru/open-browser.vim')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('Xuyuanp/nerdtree-git-plugin')
 
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 let g:NERDTreeShowIgnoredStatus = 1
 
 " add fzf to rtp
@@ -49,6 +53,10 @@ let g:buffergator_sort_regime = 'mru'
 " format elixir files on save
 let g:mix_format_on_save = 1
 
+let g:ctrlsf_auto_close = {
+    \ "normal" : 1,
+    \ "compact": 0
+    \}
 " various dracula workarounds
 " https://github.com/dracula/vim/issues/96
 " https://github.com/dracula/vim/issues/143
@@ -66,6 +74,7 @@ let g:mix_format_on_save = 1
 
 let g:ctrlp_dotfiles = 1
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlsf_auto_preview = 1
 
 let g:buffergator_viewport_split_policy = 'B'
 
@@ -79,7 +88,7 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'cocstatus', 'currentfunction', 'readonly', '%f', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
@@ -106,16 +115,15 @@ augroup fmt
   au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
-map <Leader>np :call CocAction('diagnosticNext')<CR>
-map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
-map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
 map <Leader>ol :CocList outline<CR>
+map <Leader>dn :call CocAction('diagnosticNext')<CR>
+map <Leader>dp :call CocAction('diagnosticPrevious')<CR>
 
 source $HOME/.config/vim/coc.vim
 
-" map <Leader>t :tabnew<CR>
-" map <Leader>tx :tabclose<CR>
-" map <Leader>tc :tab split<CR>
+map <Leader>t :tabnew<CR>
+map <Leader>tx :tabclose<CR>
+map <Leader>tc :tab split<CR>
 map <Leader>\ :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
 map <Leader>nr :NERDTreeRefreshRoot<CR>
