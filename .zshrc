@@ -1,4 +1,4 @@
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH:$HOME/git/dotfiles/bin"
 
 # Setup oh-my-zsh
 export ZSH="$HOME/.oh-my-zsh"
