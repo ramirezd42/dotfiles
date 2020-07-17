@@ -36,6 +36,11 @@ call minpac#add('mhinz/vim-mix-format')
 call minpac#add('mengelbrecht/lightline-bufferline')
 call minpac#add('jeetsukumaran/vim-buffergator')
 call minpac#add('sbdchd/neoformat')
+call minpac#add('tyru/open-browser.vim')
+
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " add fzf to rtp
 set rtp+=/usr/local/opt/fzf
@@ -105,10 +110,9 @@ augroup fmt
   au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
-map <Leader>np :call CocAction('diagnosticNext')<CR>
-map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
-map <Leader>pp :call CocAction('diagnosticPrevious')<CR>
 map <Leader>ol :CocList outline<CR>
+map <Leader>dn :call CocAction('diagnosticNext')<CR>
+map <Leader>dp :call CocAction('diagnosticPrevious')<CR>
 
 source $HOME/.config/vim/coc.vim
 
