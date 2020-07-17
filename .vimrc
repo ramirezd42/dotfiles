@@ -44,6 +44,10 @@ let g:buffergator_sort_regime = 'mru'
 " format elixir files on save
 let g:mix_format_on_save = 1
 
+let g:ctrlsf_auto_close = {
+    \ "normal" : 1,
+    \ "compact": 0
+    \}
 " various dracula workarounds
 " https://github.com/dracula/vim/issues/96
 " https://github.com/dracula/vim/issues/143
@@ -61,7 +65,7 @@ let g:mix_format_on_save = 1
 
 let g:ctrlp_dotfiles = 1
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-
+let g:ctrlsf_auto_preview = 1
 let g:buffergator_viewport_split_policy = 'B'
 
 function! CocCurrentFunction()
@@ -74,12 +78,12 @@ let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'cocstatus', 'currentfunction', 'readonly', '%f', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
       \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
+      \   'currentfunction': 'CocCurrentFunction',
       \ },
       \ }
 set statusline+=%#warningmsg#
@@ -108,16 +112,16 @@ map <Leader>ol :CocList outline<CR>
 
 source $HOME/.config/vim/coc.vim
 
-" map <Leader>t :tabnew<CR>
-" map <Leader>tx :tabclose<CR>
-" map <Leader>tc :tab split<CR>
+map <Leader>t :tabnew<CR>
+map <Leader>tx :tabclose<CR>
+map <Leader>tc :tab new<CR>
 map <Leader>\ :NERDTreeToggle<CR>
 map <Leader>nf :NERDTreeFind<CR>
 map <Leader>nr :NERDTreeRefreshRoot<CR>
 map <Leader>f :CtrlSF 
 map <Leader>F :CtrlSFToggle<CR>
-map <Leader>P :Files<CR>
-map <Leader>GP :GFiles<CR>
+map <Leader>pP :Files<CR>
+map <Leader>pp :GFiles<CR>
 
 map <Leader>` :vsplit term://zsh -i<CR>
 map <Leader>~ :vsplit term://zsh -i<CR>
