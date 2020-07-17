@@ -60,4 +60,10 @@ fi
 # Setup symlinks for the dotfiles
 ./setup_symlinks.sh || exit 1
 
+
+echo "\nInstalling patched firacode font (dont forget to configure it in iterm as well)..."
+cd ~/Library/Fonts && { 
+    curl -O 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Light%20Nerd%20Font%20Complete%20Mono.ttf'
+    cd -; }
+
 echo "\n 👍 Have fun. Be safe!"
