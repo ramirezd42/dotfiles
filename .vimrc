@@ -38,20 +38,30 @@ call minpac#add('jeetsukumaran/vim-buffergator')
 call minpac#add('sbdchd/neoformat')
 call minpac#add('tiagofumo/vim-nerdtree-syntax-highlight')
 call minpac#add('tyru/open-browser.vim')
+call minpac#add('tyru/open-browser-github.vim')
 call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('Xuyuanp/nerdtree-git-plugin')
+call minpac#add('christoomey/vim-tmux-navigator')
+call minpac#add('iamcco/markdown-preview.nvim', {'do': 'packloadall! | call mkdp#util#install()'})
 
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
-let g:NERDTreeShowIgnoredStatus = 1
+let g:NERDTreeGitStatusShowIgnored = 1
 
 " add fzf to rtp
 set rtp+=/usr/local/opt/fzf
 
 let g:buffergator_sort_regime = 'mru'
 " format elixir files on save
-let g:mix_format_on_save = 1
+" let g:mix_format_on_save = 1
+
+" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>= :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>- :wincmd =<cr>
 
 let g:ctrlsf_auto_close = {
     \ "normal" : 1,
@@ -103,16 +113,16 @@ set statusline+=%*
 " COC stfuff
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-let g:neoformat_typescriptreact_prettier = {
-        \ 'exe': 'prettier',
-        \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
-        \ 'stdin': 1
-        \ }
-let g:neoformat_enabled_typescriptreact = ['tsfmt', 'prettier']
+" let g:neoformat_typescriptreact_prettier = {
+"         \ 'exe': 'prettier',
+"         \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
+"         \ 'stdin': 1
+"         \ }
+" let g:neoformat_enabled_typescriptreact = ['tsfmt', 'prettier']
 augroup fmt
   autocmd!
   " Craziness to get around weird behavior after undoing https://github.com/sbdchd/neoformat/issues/134
-  au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+  " au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 augroup END
 
 map <Leader>ol :CocList outline<CR>
@@ -141,8 +151,6 @@ map <Leader>, :e ~/.vimrc<CR>
 map <Leader>< :source ~/.vimrc<CR>
 map <Leader>mu :call minpac#update()<CR>
 map <silent><expr> <Leader><Leader> coc#refresh()
-map <Leader>bp :bprev<CR>
-map <Leader>bn :bnext<CR>
 map <Leader>nh :noh<CR>
 
 " Use K to show documentation in preview window
