@@ -8,5 +8,14 @@
   "solargraph.diagnostics": true,
   "solargraph.autoformat": true,
   "solargraph.formatting": true,
-  "solargraph.hover": true
+  "solargraph.hover": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "css",
+    "scss"
+  ]
 }

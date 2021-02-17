@@ -14,6 +14,35 @@ if ! [ -x "$(command -v brew)" ]; then
   exit 1
 fi
 
+# Install oh-my-zsh
+if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+  echo "✅ Found oh-my-zsh.\n"
+else
+  echo "\noh-my-zsh not found. Installing..."
+  add_package 'zsh'
+  chsh -s /bin/sh || \
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
+    exit 1
+fi
+
+# Install minpac
+if [ -d "$HOME/.vim/pack/minpac/opt" ]; then
+  echo "✅ Found minpac.\n"
+else
+  echo "\nminpac not found. Installing..."
+  mkdir -p ~/.vim/pack/minpac/opt
+  cd ~/.vim/pack/minpac/opt
+  git clone https://github.com/k-takata/minpac.git
+fi
+
+# Install nvm
+if ! [ -x "$(command -v nvm)" ]; then
+  echo "✅ Found nvm.\n"
+else
+  echo "\nnvm not found. Installing..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash
+fi
+
 # install homebrew packages
 add_package () {
   if brew ls --versions $1 > /dev/null; then
@@ -45,17 +74,6 @@ add_pacakge 'fzf'
 $(brew --prefix)/opt/fzf/install
 
 echo "\n"
-
-# Install oh-my-zsh
-if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
-  echo "✅ Found oh-my-zsh.\n"
-else
-  echo "\noh-my-zsh not found. Installing..."
-  add_package 'zsh'
-  chsh -s /bin/sh || \
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
-    exit 1
-fi
 
 # Setup symlinks for the dotfiles
 ./setup_symlinks.sh || exit 1

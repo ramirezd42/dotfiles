@@ -20,6 +20,7 @@ call minpac#add('dyng/ctrlsf.vim')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-commentary')
+call minpac#add('justinmk/vim-dirvish')
 call minpac#add('maxmellon/vim-jsx-pretty')
 call minpac#add('elixir-editors/vim-elixir')
 call minpac#add('arcticicestudio/nord-vim')
@@ -59,6 +60,8 @@ let g:buffergator_sort_regime = 'mru'
 
 " automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
+
+nnoremap <esc> :noh<return><esc>
 
 " zoom a vim pane, <C-w>= to re-balance
 nnoremap <leader>= :wincmd _<cr>:wincmd \|<cr>
@@ -114,19 +117,23 @@ set statusline+=%*
 " COC stfuff
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
 " let g:neoformat_typescriptreact_prettier = {
 "         \ 'exe': 'prettier',
 "         \ 'args': ['--stdin', '--stdin-filepath', '"%:p"', '--parser', 'typescript'],
 "         \ 'stdin': 1
 "         \ }
 " let g:neoformat_enabled_typescriptreact = ['tsfmt', 'prettier']
-augroup fmt
-  autocmd!
-  " Craziness to get around weird behavior after undoing https://github.com/sbdchd/neoformat/issues/134
-  " au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
-augroup END
+" augroup fmt
+"   autocmd!
+"   " Craziness to get around weird behavior after undoing https://github.com/sbdchd/neoformat/issues/134
+"   au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
+" augroup END
 
+map <Leader>n :noh<CR>
 map <Leader>ol :CocList outline<CR>
+map <Leader>cf :CocFix<CR>
 map <Leader>dn :call CocAction('diagnosticNext')<CR>
 map <Leader>dp :call CocAction('diagnosticPrevious')<CR>
 
@@ -164,3 +171,12 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" Function to source only if file exists
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
+call SourceIfExists('~/.vimrc.local')
