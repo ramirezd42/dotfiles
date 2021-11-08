@@ -14,17 +14,6 @@ if ! [ -x "$(command -v brew)" ]; then
   exit 1
 fi
 
-# Install oh-my-zsh
-if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
-  echo "✅ Found oh-my-zsh.\n"
-else
-  echo "\noh-my-zsh not found. Installing..."
-  add_package 'zsh'
-  chsh -s /bin/sh || \
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
-    exit 1
-fi
-
 # Install minpac
 if [ -d "$HOME/.vim/pack/minpac/opt" ]; then
   echo "✅ Found minpac.\n"
@@ -62,6 +51,17 @@ add_package () {
   fi
 }
 
+# Install oh-my-zsh
+if [ -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]; then
+  echo "✅ Found oh-my-zsh.\n"
+else
+  echo "\noh-my-zsh not found. Installing..."
+  add_package 'zsh'
+  chsh -s /bin/sh || \
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || \
+    exit 1
+fi
+
 echo "\nInstalling homebrew packages..."
 add_package 'tig'
 add_package 'jq'
@@ -79,9 +79,9 @@ echo "\n"
 ./setup_symlinks.sh || exit 1
 
 
-echo "\nInstalling patched firacode font (dont forget to configure it in iterm as well)..."
-cd ~/Library/Fonts && { 
-    curl -O 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Light%20Nerd%20Font%20Complete%20Mono.ttf'
-    cd -; }
+# echo "\nInstalling patched firacode font (dont forget to configure it in iterm as well)..."
+# cd ~/Library/Fonts && { 
+#    curl -O 'https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Light/complete/Fira%20Code%20Light%20Nerd%20Font%20Complete%20Mono.ttf'
+#    cd -; }
 
 echo "\n 👍 Have fun. Be safe!"
