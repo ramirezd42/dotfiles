@@ -1,7 +1,7 @@
 :let mapleader = " "
 
 set number
-set relativenumber
+" set relativenumber
 set list
 set tabstop=2
 set shiftwidth=2
@@ -23,7 +23,6 @@ call minpac#add('tpope/vim-commentary')
 call minpac#add('justinmk/vim-dirvish')
 call minpac#add('maxmellon/vim-jsx-pretty')
 call minpac#add('elixir-editors/vim-elixir')
-call minpac#add('arcticicestudio/nord-vim')
 call minpac#add('vim-syntastic/syntastic')
 call minpac#add('HerringtonDarkholme/yats.vim')
 call minpac#add('peitalin/vim-jsx-typescript')
@@ -45,6 +44,7 @@ call minpac#add('ryanoasis/vim-devicons')
 call minpac#add('Xuyuanp/nerdtree-git-plugin')
 call minpac#add('christoomey/vim-tmux-navigator')
 call minpac#add('iamcco/markdown-preview.nvim', {'do': 'packloadall! | call mkdp#util#install()'})
+call minpac#add('pantharshit00/vim-prisma')
 
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
@@ -131,9 +131,12 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 "   au BufWritePre * try | undojoin | Neoformat | catch /^Vim\%((\a\+)\)\=:E790/ | finally | silent Neoformat | endtry
 " augroup END
 
-map <Leader>n :noh<CR>
 map <Leader>ol :CocList outline<CR>
-map <Leader>cf :CocFix<CR>
+xmap <Leader>a <Plug>(coc-codeaction-selected)
+nmap <Leader>a <Plug>(coc-codeaction-selected)
+map <Leader>cf <Plug>(coc-fix-current)
+map <Leader>cl <Plug>(coc-codelens-action)
+map <Leader>ca <Plug>(coc-codeaction)
 map <Leader>dn :call CocAction('diagnosticNext')<CR>
 map <Leader>dp :call CocAction('diagnosticPrevious')<CR>
 
@@ -159,7 +162,14 @@ map <Leader>, :e ~/.vimrc<CR>
 map <Leader>< :source ~/.vimrc<CR>
 map <Leader>mu :call minpac#update()<CR>
 map <silent><expr> <Leader><Leader> coc#refresh()
-map <Leader>nh :noh<CR>
+map <C-S-Up> :resize -5<cr>
+map <C-S-Down> :resize +5<cr>
+map <C-S-Left> :vertical resize -5<cr>
+map <C-S-Right> :vertical resize +5<cr>
+noremap <A-S-k>      :m -2 <enter>
+noremap <A-S-j>      :m +1 <enter>
+inoremap <A-S-k>    <esc> :m -2 <enter>
+inoremap <A-S-j>    <esc> :m +1 <enter>
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>

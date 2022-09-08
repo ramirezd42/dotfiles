@@ -4,6 +4,7 @@
       "libs": {
         "/Users/dave/git/planner/frontend/node_modules/eslint/lib/api.js": true
       }
-    }
+    },
+    "eslintAlwaysAllowExecution": true
   }
 }
