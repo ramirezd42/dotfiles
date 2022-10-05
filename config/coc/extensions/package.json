@@ -5,5 +5,7 @@
     "coc-prisma": ">=0.11.0",
     "coc-solargraph": ">=1.2.0",
     "coc-tsserver": ">=1.6.7"
-  }
+  },
+  "disabled": [],
+  "locked": []
 }
